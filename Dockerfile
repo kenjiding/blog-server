@@ -19,5 +19,5 @@ COPY . .
 EXPOSE 3008
 
 # 启动应用
-CMD ["pm2", "start", "dist/main.js"]
-# CMD ["node", "dist/main.js"]
+# CMD ["pm2", "start", "./main.js"]
+CMD ["node", "./main.js"]

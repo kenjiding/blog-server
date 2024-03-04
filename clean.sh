@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# 停止所有容器
+docker stop $(docker ps -a -q)
+
+# 删除所有容器
+docker rm $(docker ps -a -q)
+
+# 清理未使用的镜像
+docker image prune -a
+
+# 清理未使用的卷
+docker volume prune
+
+# 清理未使用的资源
+docker system prune -a

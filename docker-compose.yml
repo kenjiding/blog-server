@@ -54,7 +54,7 @@ services:
 
   ssr:
     build:
-      context: ./ssr
+      context: ./ssr/.next/standalone
     ports:
       - "8989:3000"
 

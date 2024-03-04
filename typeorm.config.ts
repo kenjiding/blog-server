@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'mysql',
-  host: process.env.NEST_PUBLIC_SERVER_HOST,
+  host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
