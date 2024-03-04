@@ -5,7 +5,8 @@ import { ArticleModule } from './modules/article/article.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from '../typeorm.config';
 import { AllExceptionsFilter } from './filters/exceptions.filter';
-import { APP_FILTER } from '@nestjs/core';
+import { DataInterceptor } from './interceptors/data.interceptor';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
   imports: [TypeOrmModule.forRoot(typeOrmConfig), ArticleModule],
@@ -14,6 +15,10 @@ import { APP_FILTER } from '@nestjs/core';
     {
       provide: APP_FILTER,
       useClass: AllExceptionsFilter,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: DataInterceptor,
     },
     AppService
   ],

@@ -15,6 +15,12 @@ export class ArticleService {
     return await this.articleRepository.save(article);
   }
 
+  async findById(id: number): Promise<Article> {
+    return await this.articleRepository.findOne({
+      where: { id }
+    });
+  }
+
   async findAll(): Promise<Article[]> {
     return await this.articleRepository.find();
   }
