@@ -23,8 +23,11 @@ export class Article {
   @Column()
   tags: string;
 
-  @Column()
+  @Column({ default: 0 })
   views: number;
+
+  @Column()
+  tips: string;
 
   @Column()
   image: string;

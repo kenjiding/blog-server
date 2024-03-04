@@ -11,6 +11,16 @@ export class ArticleService {
     private articleRepository: Repository<Article>,
   ) {}
 
+  async counter(id: number): Promise<void> {
+    const article = await this.articleRepository.findOne({
+      where: { id }
+    });
+    if (article) {
+      article.views += 1;
+      await this.articleRepository.save(article);
+    }
+  }
+
   async create(article: Article): Promise<Article> {
     return await this.articleRepository.save(article);
   }

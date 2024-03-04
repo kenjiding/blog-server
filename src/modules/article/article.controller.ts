@@ -12,11 +12,15 @@ export class ArticleController {
     return await this.articleService.findAll();
   }
 
+  @Get('/counter/:id')
+  async viewsCounter(@Param('id') id: number): Promise<void> {
+    return await this.articleService.counter(id);
+  }
+
   @Get('/get/:id')
   async findById(@Param('id') id: number): Promise<Article> {
     return await this.articleService.findById(id);
   }
-
 
   @Post('/create')
   async create(@Body() articleData: Article) {
