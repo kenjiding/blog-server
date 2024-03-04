@@ -7,6 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   dotenv.config({ path: '.env.development' });
 }
+console.log(333, 'process.env.DB_HOST: ', process.env.DB_HOST);
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'mysql',
