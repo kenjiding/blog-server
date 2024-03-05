@@ -23,7 +23,7 @@ jobs:
         npm i pnpm -g
         pnpm i
         npm run build:bundle
-        cp -r ./Dockerfile ./dist
+        cp -r ./Dockerfile ./nest-blog
 
     - name: Copy files to EC2
       uses: appleboy/scp-action@master
@@ -31,8 +31,8 @@ jobs:
         host: ${{ secrets.AMAZON_EC2_HOST }}
         username: ${{ secrets.AMAZON_EC2_NAME }}
         key: ${{ secrets.AMAZON_SECRET_KEY }}
-        source: ./dist/* # 需要上传的文件
-        target: '/home/ec2-user/app/backend/nodejs'
+        source: ./nest-blog/* # 需要上传的文件
+        target: '/home/ec2-user/app/backend/'
 
     # - name: shell EC2
     #   uses: appleboy/ssh-action@master

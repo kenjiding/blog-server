@@ -25,7 +25,7 @@ services:
       - "8090:8080"
 
   nestjs-app:
-    build: ./backend/nodejs/dist
+    build: ./backend/nest-blog
     ports:
       - "3008:3008"
     environment:
@@ -54,7 +54,7 @@ services:
 
   ssr:
     build:
-      context: ./ssr/.next/standalone
+      context: ./ssr/standalone
     ports:
       - "8989:3000"
 
