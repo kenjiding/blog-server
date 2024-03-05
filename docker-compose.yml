@@ -13,6 +13,9 @@ services:
       - "3090:3306"
     volumes:
       - /data/mysql:/var/lib/mysql
+    labels:
+      important: "true"
+    restart: always
 
   adminer:
     image: adminer
@@ -26,8 +29,7 @@ services:
       - "3008:3008"
     environment:
       NODE_ENV: production
-    networks:
-      - app-network
+    restart: always
 
   # redis:
   #   image: redis:latest
@@ -36,6 +38,8 @@ services:
   #     - "6379:6379"
   #   # 如果需要设置密码，可以使用下面的 command 选项：
   #   command: redis-server --requirepass 123456
+  #   labels:
+  #     important: "true"
 
   # java_app:
   #   build:
@@ -53,8 +57,7 @@ services:
   ssr:
     build:
       context: ./ssr/standalone
-    networks:
-      - app-network
+    restart: always
 
   nginx:
     image: nginx:alpine
@@ -67,9 +70,4 @@ services:
       - ./ssr/standalone/.next/static:/app/ssr/standalone/.next/static
       - ./ssr/standalone/public:/app/ssr/standalone/public
       - ./logs:/app/logs
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+    restart: always

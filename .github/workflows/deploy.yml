@@ -34,14 +34,14 @@ jobs:
         source: ./nest-blog/* # 需要上传的文件
         target: '/home/ec2-user/app/backend/nodejs'
 
-    # - name: shell EC2
-    #   uses: appleboy/ssh-action@master
-    #   with:
-    #     host: ${{ secrets.AMAZON_EC2_HOST }}
-    #     username: ${{ secrets.AMAZON_EC2_NAME }}
-    #     key: ${{ secrets.AMAZON_SECRET_KEY }}
-    #     script: |
-    #       cd /home/ec2-user/app
-    #       docker rmi app-ssr
-    #       docker system prune -a -f
-    #       docker-compose up --no-deps --build -d ssr
+    - name: shell EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.AMAZON_EC2_HOST }}
+        username: ${{ secrets.AMAZON_EC2_NAME }}
+        key: ${{ secrets.AMAZON_SECRET_KEY }}
+        script: |
+          cd /home/ec2-user/app
+          docker-compose up --no-deps --build -d nestjs-app
+          docker image prune -a --force --filter "label!=important"
+          docker system prune -a -f
