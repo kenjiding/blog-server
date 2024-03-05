@@ -1,7 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { join } from 'path';
 import * as dotenv from 'dotenv';
-import { Article } from 'src/modules/article/article.entity';
+import { Article } from './src/modules/article/article.entity';
 
 if (process.env.NODE_ENV === 'production') {
   dotenv.config({ path: `.env.production` });
