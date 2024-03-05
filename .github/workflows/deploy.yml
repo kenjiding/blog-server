@@ -32,7 +32,7 @@ jobs:
         username: ${{ secrets.AMAZON_EC2_NAME }}
         key: ${{ secrets.AMAZON_SECRET_KEY }}
         source: ./nest-blog/* # 需要上传的文件
-        target: '/home/ec2-user/app/backend/'
+        target: '/home/ec2-user/app/backend/nodejs'
 
     # - name: shell EC2
     #   uses: appleboy/ssh-action@master
