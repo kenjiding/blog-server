@@ -43,5 +43,5 @@ jobs:
         script: |
           cd /home/ec2-user/app
           docker-compose up --no-deps --build -d nestjs-app
-          docker image prune -a --force --filter "label!=important"
+          docker image prune -a --force
           docker system prune -a -f
