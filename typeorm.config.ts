@@ -1,6 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { join } from 'path';
 import * as dotenv from 'dotenv';
+import { Article } from 'src/modules/article/article.entity';
 
 if (process.env.NODE_ENV === 'production') {
   dotenv.config({ path: `.env.production` });
@@ -17,6 +18,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   password: '123456',
   database: 'blog',
   timezone: 'UTC', // 设置时区为 UTC
-  entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+  // entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+  entities: [Article],
   synchronize: false, // 注意：生产环境中应该设置为 false
 };
