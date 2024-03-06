@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies and build
       run: |
         npm i pnpm -g
-        pnpm i
+        pnpm i --no-lockfile
         npm run build:bundle
         cp -r ./Dockerfile ./nest-blog
 
