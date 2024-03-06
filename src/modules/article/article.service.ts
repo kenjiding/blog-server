@@ -32,6 +32,10 @@ export class ArticleService {
   }
 
   async findAll(): Promise<Article[]> {
-    return await this.articleRepository.find();
+    return await this.articleRepository.find({
+      order: {
+        createTime: 'DESC',
+      },
+    });
   }
 }
