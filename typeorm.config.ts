@@ -11,7 +11,7 @@ console.log(333, 'process.env.DB_HOST: ', process.env.DB_HOST);
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'mysql',
-  host: '54.166.251.146',
+  host: '54.165.65.205',
   port: 3090,
   username: 'root',
   password: '123456',
