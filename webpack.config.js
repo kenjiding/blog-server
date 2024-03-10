@@ -4,6 +4,14 @@ const webpack = require('webpack');
 // fork-ts-checker-webpack-plugin需要单独安装
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
+// const dotenv = require('dotenv');
+// const env = dotenv.config({ path: `.env.${process.env.NODE_ENV}`}).parsed;
+// // 将环境变量转换为 DefinePlugin 能够处理的格式
+// const envKeys = Object.keys(env).reduce((prev, next) => {
+//   prev[`process.env.${next}`] = JSON.stringify(env[next]);
+//   return prev;
+// }, {});
+
 module.exports = {
   entry: './src/main',
   output: {
@@ -11,8 +19,6 @@ module.exports = {
     filename: 'main.js'
   },
   target: 'node',
-  // 置为空即可忽略webpack-node-externals插件
-  externals: {},
   // ts文件的处理
   module: {
     rules: [
@@ -20,15 +26,25 @@ module.exports = {
         test: /\.ts?$/,
         use: {
           loader: 'ts-loader',
-          options: { transpileOnly: true }
+          options: {
+            transpileOnly: true,
+          }
         },
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        
       }
     ]
   },
   resolve: {
-    extensions: ['.js', '.ts', '.json']
+    extensions: ['.js', '.ts', '.json'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
+  optimization: {
+    // minimize: true,
+  },
+  externals: {},
   plugins: [
     // 需要进行忽略的插件
     new webpack.IgnorePlugin({
@@ -54,7 +70,7 @@ module.exports = {
         return false;
       }
     }),
-    new ForkTsCheckerWebpackPlugin()
+    new ForkTsCheckerWebpackPlugin(),
   ]
 };
 

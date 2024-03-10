@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { ArticleService } from './article.service';
 import { Article } from './article.entity';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('article')
 export class ArticleController {
@@ -22,8 +23,9 @@ export class ArticleController {
     return await this.articleService.findById(id);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post('/create')
   async create(@Body() articleData: Article) {
-    return await this.articleService.create(articleData);
+    return await this.articleService.created(articleData);
   }
 }

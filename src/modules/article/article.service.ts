@@ -5,7 +5,6 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class ArticleService {
-
   constructor(
     @InjectRepository(Article)
     private articleRepository: Repository<Article>,
@@ -21,7 +20,7 @@ export class ArticleService {
     }
   }
 
-  async create(article: Article): Promise<Article> {
+  async created(article: Article): Promise<Article> {
     return await this.articleRepository.save(article);
   }
 
