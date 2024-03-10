@@ -1,5 +1,4 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { join } from 'path';
 import * as dotenv from 'dotenv';
 import { Article } from '@/modules/article/article.entity';
 import { Users } from '@/modules/user/user.entity';

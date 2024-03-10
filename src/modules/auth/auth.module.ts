@@ -12,7 +12,7 @@ import { UserModule } from '../user/user.module';
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: SecretOrKey, // 用于签名 JWT 的密钥
-      signOptions: { expiresIn: 3600 },
+      signOptions: { expiresIn: '1h' },
     }),
   ],
   providers: [AuthService, JwtStrategy],

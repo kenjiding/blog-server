@@ -6,11 +6,8 @@ services:
   mysql:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123456
-    ports:
-      - "3090:3306"
     volumes:
       - /data/mysql:/var/lib/mysql
     labels:
@@ -21,25 +18,25 @@ services:
 
   adminer:
     image: adminer
-    restart: always
     ports:
       - "8090:8080"
+    networks:
+    - mynetwork
 
   nestjs-app:
     build: ./backend/nodejs/nest-blog
-    ports:
-      - "3008:3008"
     environment:
       NODE_ENV: production
       DB_HOST: mysql
-      DB_PORT: 3090
+      DB_PORT: 3306
       DB_USERNAME: root
       DB_PASSWORD: 123456
       DB_DATABASE: blog
-
     restart: always
     networks:
       - mynetwork
+    depends_on:
+      - mysql
 
   # redis:
   #   image: redis:latest
@@ -50,6 +47,8 @@ services:
   #   command: redis-server --requirepass 123456
   #   labels:
   #     important: "true"
+  #   networks:
+  #     - mynetwork
 
   # java_app:
   #   build:
@@ -68,8 +67,8 @@ services:
     build:
       context: ./ssr/standalone
     restart: always
-    depends_on:
-      - nestjs-app
+    networks:
+      - mynetwork
 
   nginx:
     image: nginx:alpine
@@ -83,8 +82,8 @@ services:
       - ./ssr/standalone/public:/app/ssr/standalone/public
       - ./logs:/app/logs
     restart: always
-    depends_on:
-      - ssr
-      - nestjs-app
+    networks:
+    - mynetwork
+
 networks:
   mynetwork:

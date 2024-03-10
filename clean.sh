@@ -10,11 +10,11 @@ docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 
 # 清理未使用的镜像
-docker image prune -a
+docker image prune -a -f
 
 # 清理未使用的卷
-docker volume prune
+docker volume prune -f
 
 # 清理未使用的资源
-docker system prune -a
+docker system prune -a -f
 
