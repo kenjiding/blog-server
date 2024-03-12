@@ -67,6 +67,8 @@ services:
     build:
       context: ./ssr/standalone
     restart: always
+    environment:
+      DOCKER_SERVER_HOST: http://34.227.84.243
     networks:
       - mynetwork
 
