@@ -68,7 +68,7 @@ services:
       context: ./ssr/standalone
     restart: always
     environment:
-      DOCKER_SERVER_HOST: http://34.227.84.243
+      DOCKER_SERVER_HOST: https://kenjiding.com
     networks:
       - mynetwork
 
@@ -76,6 +76,7 @@ services:
     image: nginx:alpine
     ports:
       - "80:80"
+      - "443:443"
     # 设置nginx写入权限
     command: /bin/sh -c "mkdir -p /app/logs && chmod -R 755 /app/logs && nginx -g 'daemon off;'"
     volumes:
@@ -83,6 +84,7 @@ services:
       - ./ssr/standalone/.next/static:/app/ssr/standalone/.next/static
       - ./ssr/standalone/public:/app/ssr/standalone/public
       - ./logs:/app/logs
+      - ./nginx/ssl:/etc/nginx/ssl
     restart: always
     networks:
     - mynetwork

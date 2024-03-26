@@ -2,6 +2,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { Article } from '@/modules/article/article.entity';
 import { Users } from '@/modules/user/user.entity';
+import { join } from 'path';
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 

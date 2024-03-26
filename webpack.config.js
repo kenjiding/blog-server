@@ -4,13 +4,13 @@ const webpack = require('webpack');
 // fork-ts-checker-webpack-plugin需要单独安装
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-// const dotenv = require('dotenv');
-// const env = dotenv.config({ path: `.env.${process.env.NODE_ENV}`}).parsed;
-// // 将环境变量转换为 DefinePlugin 能够处理的格式
-// const envKeys = Object.keys(env).reduce((prev, next) => {
-//   prev[`process.env.${next}`] = JSON.stringify(env[next]);
-//   return prev;
-// }, {});
+const dotenv = require('dotenv');
+const env = dotenv.config({ path: `.env.${process.env.NODE_ENV}`}).parsed;
+// 将环境变量转换为 DefinePlugin 能够处理的格式
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
 
 module.exports = {
   entry: './src/main',
@@ -46,6 +46,7 @@ module.exports = {
   },
   externals: {},
   plugins: [
+    new webpack.DefinePlugin(envKeys),
     // 需要进行忽略的插件
     new webpack.IgnorePlugin({
       checkResource(resource) {

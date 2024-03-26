@@ -10,8 +10,15 @@ import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { AuthController } from './modules/auth/auth.controller';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserController } from './modules/user/user.controller';
+import { FileModule } from './modules/file/file.module';
+
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig), ArticleModule, AuthModule],
+  imports: [
+    TypeOrmModule.forRoot(typeOrmConfig),
+    ArticleModule,
+    AuthModule,
+    FileModule
+  ],
   controllers: [AppController, AuthController, UserController],
   providers: [
     {
@@ -22,7 +29,7 @@ import { UserController } from './modules/user/user.controller';
       provide: APP_INTERCEPTOR,
       useClass: DataInterceptor,
     },
-    AppService
+    AppService,
   ],
 })
 export class AppModule {}

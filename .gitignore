@@ -2,6 +2,7 @@
 /dist
 /node_modules
 /build
+/files
 /nest-blog
 
 # Logs
@@ -46,6 +47,7 @@ lerna-debug.log*
 # temp directory
 .temp
 .tmp
+summary.txt
 
 # Runtime data
 pids

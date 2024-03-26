@@ -12,7 +12,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
   private readonly logger = new Logger(AllExceptionsFilter.name);
 
   catch(exception: unknown, host: ArgumentsHost) {
-    console.log('exception: ', exception);
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
@@ -25,7 +24,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       exception instanceof HttpException
         ? exception.getResponse()
         : exception;
-
+        
     // Log the error with a unique request id for tracing
     const requestId = request.headers['x-request-id'] || 'N/A';
     this.logger.error(
