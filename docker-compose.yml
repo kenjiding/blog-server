@@ -33,6 +33,8 @@ services:
       DB_PASSWORD: 123456
       DB_DATABASE: blog
     restart: always
+    volumes:
+      - /home/ec2-user/app/files:/usr/src/app/files
     networks:
       - mynetwork
     depends_on:
