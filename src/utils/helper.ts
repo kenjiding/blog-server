@@ -1,7 +1,6 @@
-
-export function catchError<T, U extends Error> (
+export function catchError<T, U extends Error>(
   promise: Promise<T>,
-  errorExt?: object
+  errorExt?: object,
 ): Promise<[U, undefined] | [null, T]> {
   return promise
     .then<[null, T]>((data: T) => [null, data]) // 执行成功，返回数组第一项为 null。第二个是结果。

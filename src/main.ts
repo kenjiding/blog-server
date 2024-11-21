@@ -7,7 +7,7 @@ import { join } from 'path';
 
 // import 'reflect-metadata';
 
-const PORT = 3008;
+const PORT = process.env.PORT || 3008;
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 async function bootstrap() {

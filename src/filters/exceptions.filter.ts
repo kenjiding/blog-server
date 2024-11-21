@@ -21,10 +21,8 @@ export class AllExceptionsFilter implements ExceptionFilter {
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
     const message =
-      exception instanceof HttpException
-        ? exception.getResponse()
-        : exception;
-        
+      exception instanceof HttpException ? exception.getResponse() : exception;
+
     // Log the error with a unique request id for tracing
     const requestId = request.headers['x-request-id'] || 'N/A';
     this.logger.error(
@@ -32,7 +30,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     );
 
     // Customize the error response based on the exception type
-    let errorResponse = {
+    const errorResponse = {
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,

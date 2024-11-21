@@ -9,5 +9,4 @@ import { Article } from './article.entity';
   providers: [ArticleService],
   controllers: [ArticleController],
 })
-
 export class ArticleModule {}

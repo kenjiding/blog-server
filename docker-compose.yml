@@ -87,6 +87,9 @@ services:
       - ./ssr/standalone/public:/app/ssr/standalone/public
       - ./logs:/app/logs
       - ./nginx/ssl:/etc/nginx/ssl
+      - ./nginx/static/resume:/app/nginx/static/resume
+      # 后端上传图片保存的路径映射
+      - ./files:/app/files
     restart: always
     networks:
     - mynetwork

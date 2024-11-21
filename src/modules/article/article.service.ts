@@ -12,7 +12,7 @@ export class ArticleService {
 
   async counter(id: number): Promise<void> {
     const article = await this.articleRepository.findOne({
-      where: { id }
+      where: { id },
     });
     if (article) {
       article.views += 1;
@@ -26,7 +26,7 @@ export class ArticleService {
 
   async findById(id: number): Promise<Article> {
     return await this.articleRepository.findOne({
-      where: { id }
+      where: { id },
     });
   }
 
